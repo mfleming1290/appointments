@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static '/css/success_style.css' %}"media="screen" title="no title"  charset="utf-8">
+    </head>
+    </head>
+    <body>
+        <div id="wrapper">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <h1>Welcome, {{request.session.name}}</h1>
+            <h3>User info:</h3>
+            <p>Name: {{name}} </p>
+            <p>Email: {{email}}</p>
+            <p>Birthday: {{bday}}</p>
+            <h3>Update your user info:</h3>
+            <form class="" action="{% url 'log:update_user' %}" method="post">
+                {% csrf_token %}
+                <label for="">Name:</label>
+                <input type="text" name="name" value=""><br>
+                <label for="">Email:</label>
+                <input type="text" name="email" value=""><br>
+                <button type="submit" name="button">Update User</button>
+            </form>
+            <h3>Click here to go to appointments</h3>
+            <a href="{% url 'appoint:index' %}">appointments</a>
+            <h3>Delete your Profile:</h3>
+            <form class="" action="{% url 'log:delete_user' %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="email" value="{{email}}">
+                <button type="submit" name="button">Delete User</button>
+            </form>
+            <a href="{% url 'log:logout' %}" id="logout">Log Out</a>
+
+        </div>
+    </body>
+</html>

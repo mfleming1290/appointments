@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <header>
+            <a id="second" href="{% url 'appoint:index' %}" id="dash">Dashboard</a>
+            <a id="second" href="{% url 'log:logout' %}" id="logout">Log Out</a>
+        </header>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form class="" action="{% url 'appoint:update_task' %}" method="post">
+            {% csrf_token %}
+            <label for="">Task:</label>
+            <input type="text" name="task" value="{{appointments.task}}"><br>
+            <label for="">Status:</label>
+            <select class="status" name="status">
+                <option value="done">Done</option>
+                <option value="missed">Missed</option>
+                <option value="pending">Pending</option>
+            </select><br>
+            <label for="">Date:</label>
+            <input type="date" name="date" value="{{appointments.date|date:"Y-m-d"}}"><br>
+            <label for="">Time:</label>
+            <input type="time" name="time" value="{{appointments.time}}"><br>
+
+
+            <button type="submit" name="button">Update</button>
+
+        </form>
+    </body>
+</html>

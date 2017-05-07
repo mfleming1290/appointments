@@ -1,0 +1,39 @@
+body {
+    width: 970px;
+    margin: 0px auto;
+    background-color: #34093E;
+}
+
+#wrapper {
+    background-color: orange;
+    padding: 50px;
+    border-radius: 15px;
+    display: inline-block;
+    margin-left: 300px;
+    margin-top: 100px;
+}
+
+#wrapper a {
+    margin-top: 10px;
+    text-decoration: none;
+    padding: 8px;
+    background-color: white;
+    color: black;
+    border-radius: 3px;
+    font-weight: bold;
+}
+
+#wrapper button {
+    margin-bottom: 30px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#wrapper form {
+    padding: 10px;
+
+}
+
+#logout {
+    margin-left: 180px;
+}

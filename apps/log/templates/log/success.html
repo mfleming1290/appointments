@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static '/css/success_style.css' %}"media="screen" title="no title"  charset="utf-8">
+    </head>
+    </head>
+    <body>
+        <div id="wrapper">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <h1>Welcome, {{request.session.name}}</h1>
+            <p>Successfully {{status}}</p>
+            {% if status == 'logged in' %}
+            <h3>Update your acount info:</h3>
+            <a href="{% url 'log:user_info' id=request.session.id %}">Update</a>
+
+            <h3>Click here to go to appointments</h3>
+            <a href="{% url 'appoint:index' %}">appointments</a>
+
+            <a href="{% url 'log:logout' %}" id="logout">Log Out</a>
+            {% endif %}
+            {% if status == 'registered' %}
+                <p>Please log in to see your info.</p>
+                <a href="{% url 'log:index' %}">Log in</a>
+            {% endif %}
+        </div>
+    </body>
+</html>
